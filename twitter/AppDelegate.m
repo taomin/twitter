@@ -7,7 +7,9 @@
 //
 
 #import "AppDelegate.h"
-
+#import "TwitterClient.h"
+#import "TimelineViewController.h"
+#import "LoginViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -17,6 +19,43 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:(116/255.0) green:(195/255.0) blue:(224/255.0) alpha:0.8]];
+    
+    LoginViewController *vc = [LoginViewController new];
+
+    //need to determine redirect user to login view or timeline view
+    TwitterClient *twitterClient = [TwitterClient getTwitterClient];
+    if (twitterClient.requestSerializer.accessToken != nil) {
+        // we have access token
+        // need to verify it
+        [twitterClient GET:@"1.1/account/verify_credentials.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSDictionary *resp = responseObject;
+            if (resp[@"id"] != nil) {
+                NSLog(@"credential verified %@", responseObject);
+
+            } else {
+                NSLog(@"credential does not include id %@", responseObject);
+                self.window.rootViewController = vc;
+            }
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"failed to verify access token");
+            self.window.rootViewController = vc;
+        }
+         ];
+        
+    } else {
+        // no access token, redirect to login view
+        self.window.rootViewController = vc;
+    }
+    
+    TimelineViewController *tvc = [TimelineViewController new];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:tvc];
+    nvc.navigationBar.translucent = YES;
+    self.window.rootViewController = nvc;
+    
+    [self.window makeKeyAndVisible];
+
     return YES;
 }
 
@@ -40,6 +79,31 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+
+    NSLog(@"query is %@", url.query);
+
+    TwitterClient *twitterClient = [TwitterClient getTwitterClient];
+    [twitterClient fetchAccessTokenWithPath:@"oauth/access_token" method:@"POST" requestToken:[BDBOAuthToken tokenWithQueryString:url.query] success:^(BDBOAuthToken *accessToken) {
+
+//        NSLog(@"got access token, %@", accessToken.token);
+        [twitterClient.requestSerializer saveAccessToken:accessToken];
+        
+        TimelineViewController *vc = [TimelineViewController new];
+        UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
+        self.window.rootViewController = nvc;
+        nvc.navigationBar.translucent = YES;
+
+    } failure:^(NSError *error) {
+        NSLog(@"failed to get access token, details: %@", error.description);
+    }];
+    
+    return true;
 }
 
 @end
