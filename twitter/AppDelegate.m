@@ -27,36 +27,45 @@
     //need to determine redirect user to login view or timeline view
     TwitterClient *twitterClient = [TwitterClient getTwitterClient];
     if (twitterClient.requestSerializer.accessToken != nil) {
-        // we have access token
-        // need to verify it
-        [twitterClient GET:@"1.1/account/verify_credentials.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSDictionary *resp = responseObject;
-            if (resp[@"id"] != nil) {
-                NSLog(@"credential verified %@", responseObject);
 
-            } else {
-                NSLog(@"credential does not include id %@", responseObject);
-                self.window.rootViewController = vc;
-            }
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"failed to verify access token");
-            self.window.rootViewController = vc;
-        }
-         ];
-        
+        [self decideRootViewByVerifingAccessToken:twitterClient.requestSerializer.accessToken rootViewWindow:self.window];
+
     } else {
         // no access token, redirect to login view
+        NSLog(@"try verifying access token");
         self.window.rootViewController = vc;
     }
     
+    [self.window makeKeyAndVisible];
+    return YES;
+}
+
+- (void)decideRootViewByVerifingAccessToken:(BDBOAuthToken *)accessToken rootViewWindow:(UIWindow *)window {
+    
+    TwitterClient *twitterClient = [TwitterClient getTwitterClient];
     TimelineViewController *tvc = [TimelineViewController new];
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:tvc];
-    nvc.navigationBar.translucent = YES;
-    self.window.rootViewController = nvc;
-    
-    [self.window makeKeyAndVisible];
+    LoginViewController *lvc = [LoginViewController new];
 
-    return YES;
+    // a placeholder viewcontroller; let's set timeline view first
+    window.rootViewController = nvc;
+    
+    [twitterClient GET:@"1.1/account/verify_credentials.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *resp = responseObject;
+        if (resp[@"id"] != nil) {
+            NSLog(@"credential verified %@", responseObject);
+            tvc.userInfo = resp;
+            
+        } else {
+            NSLog(@"credential does not include id %@", responseObject);
+            window.rootViewController = lvc;
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"failed to verify access token");
+        window.rootViewController = lvc;
+    }
+     ];
+
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -93,12 +102,8 @@
 
 //        NSLog(@"got access token, %@", accessToken.token);
         [twitterClient.requestSerializer saveAccessToken:accessToken];
+        [self decideRootViewByVerifingAccessToken:accessToken rootViewWindow:self.window];
         
-        TimelineViewController *vc = [TimelineViewController new];
-        UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
-        self.window.rootViewController = nvc;
-        nvc.navigationBar.translucent = YES;
-
     } failure:^(NSError *error) {
         NSLog(@"failed to get access token, details: %@", error.description);
     }];

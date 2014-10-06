@@ -29,7 +29,7 @@
     
     TwitterClient *twitterClient = [TwitterClient getTwitterClient];
     [twitterClient.requestSerializer removeAccessToken];
-//    NSLog(@"base url is %@", twitterClient.baseURL);
+    NSLog(@"base url is %@", twitterClient.baseURL);
     [twitterClient fetchRequestTokenWithPath:@"oauth/request_token" method:@"GET" callbackURL:[NSURL URLWithString:@"cpitwitterdemo://oauth"] scope:nil success:^(BDBOAuthToken *requestToken) {
         NSLog(@"login with request token %@", requestToken.token);
 

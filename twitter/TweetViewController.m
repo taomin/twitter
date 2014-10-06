@@ -34,6 +34,8 @@
 }
 
 - (void)setTweetUI {
+
+    [self.navigationController.navigationBar setTintColor:[ UIColor whiteColor]];
     
     [self.profileImage setImageWithURL:[NSURL URLWithString:self.tweetData[@"user"][@"profile_image_url_https"]]];
     self.userName.text = self.tweetData[@"user"][@"name"];

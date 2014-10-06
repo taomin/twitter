@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ComposeViewController.h"
 
-@interface TimelineViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
-
+@interface TimelineViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,ComposeViewControllerDelegate>
+@property (strong, nonatomic) NSDictionary *userInfo;
 @end

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		03F200114C1242119A7010AE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC8B9C2EAF284A9FA7358A39 /* libPods.a */; };
+		B7183E6A19DA800500DC63FB /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7183E6819DA800500DC63FB /* ComposeViewController.m */; };
+		B7183E6B19DA800500DC63FB /* ComposeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7183E6919DA800500DC63FB /* ComposeViewController.xib */; };
 		B73B0A3519D761B4006CD2D2 /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B73B0A3319D761B4006CD2D2 /* TimelineViewController.m */; };
 		B73B0A3619D761B4006CD2D2 /* TimelineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B73B0A3419D761B4006CD2D2 /* TimelineViewController.xib */; };
 		B73B0A3D19D7634D006CD2D2 /* TimelineTweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B73B0A3B19D7634D006CD2D2 /* TimelineTweetCell.m */; };
@@ -35,6 +37,9 @@
 
 /* Begin PBXFileReference section */
 		83C3CADA72824BE78AFA2568 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		B7183E6719DA800500DC63FB /* ComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
+		B7183E6819DA800500DC63FB /* ComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
+		B7183E6919DA800500DC63FB /* ComposeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposeViewController.xib; sourceTree = "<group>"; };
 		B73B0A3219D761B4006CD2D2 /* TimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelineViewController.h; sourceTree = "<group>"; };
 		B73B0A3319D761B4006CD2D2 /* TimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimelineViewController.m; sourceTree = "<group>"; };
 		B73B0A3419D761B4006CD2D2 /* TimelineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimelineViewController.xib; sourceTree = "<group>"; };
@@ -137,6 +142,9 @@
 				B7E8908B19D92CFB0030C2FB /* TweetViewController.h */,
 				B7E8908C19D92CFB0030C2FB /* TweetViewController.m */,
 				B7E8908D19D92CFB0030C2FB /* TweetViewController.xib */,
+				B7183E6719DA800500DC63FB /* ComposeViewController.h */,
+				B7183E6819DA800500DC63FB /* ComposeViewController.m */,
+				B7183E6919DA800500DC63FB /* ComposeViewController.xib */,
 			);
 			path = twitter;
 			sourceTree = "<group>";
@@ -250,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B73B0A4619D76EA7006CD2D2 /* LoginViewController.xib in Resources */,
+				B7183E6B19DA800500DC63FB /* ComposeViewController.xib in Resources */,
 				B73B0A3619D761B4006CD2D2 /* TimelineViewController.xib in Resources */,
 				B73B0A3E19D7634D006CD2D2 /* TimelineTweetCell.xib in Resources */,
 				B7E8908F19D92CFB0030C2FB /* TweetViewController.xib in Resources */,
@@ -311,6 +320,7 @@
 				B73B0A4119D768D8006CD2D2 /* TwitterClient.m in Sources */,
 				B77DBF1419D75A8D00963E44 /* main.m in Sources */,
 				B73B0A3519D761B4006CD2D2 /* TimelineViewController.m in Sources */,
+				B7183E6A19DA800500DC63FB /* ComposeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
