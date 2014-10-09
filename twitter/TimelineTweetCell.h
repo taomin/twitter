@@ -24,6 +24,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *favoriteButton;
 @property (strong, nonatomic) IBOutlet UILabel *retweetCountLabel;
 @property (strong, nonatomic) IBOutlet UILabel *favoriteCountLabel;
+@property (strong, nonatomic) IBOutlet UILabel *timestamp;
 @property (nonatomic, weak) id < TimelineTweetDelegate> delegate;
 - (void)setTweetData:(NSDictionary *)tweet;
 @end

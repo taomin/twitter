@@ -33,6 +33,32 @@
     self.retweetCountLabel.text = [NSString stringWithFormat:@"%@", tweet[@"retweet_count"]];
     self.favoriteCountLabel.text = [NSString stringWithFormat:@"%@", tweet[@"favorite_count"]];
 
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //Mon, 11 Jul 2011 00:00:00 +0200
+    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"EN"]];
+    [dateFormatter setDateFormat:@"EEE MMM dd HH:mm:ss ZZZZ yyyy"];
+    
+//    NSLog(@"created at is %@", tweet[@"created_at"]);
+//    NSLog(@"date is %@", [dateFormatter dateFromString: tweet[@"created_at"]]);
+    NSTimeInterval dateDiff = -1 * [[dateFormatter dateFromString: tweet[@"created_at"]] timeIntervalSinceNow];
+//    NSLog(@"relative time ? %@", (now - date));
+    NSLog(@"time diff is %f", dateDiff);
+    
+    if (dateDiff < 60) {
+        self.timestamp.text = [NSString stringWithFormat:@"%ds", (int) dateDiff];
+    } else if (dateDiff < 120) {
+        self.timestamp.text = [NSString stringWithFormat:@"1m"];
+    } else if (dateDiff < 3600) {
+        self.timestamp.text = [NSString stringWithFormat:@"%dms", (int)(dateDiff/60)];
+    } else if (dateDiff < 7200) {
+        self.timestamp.text = [NSString stringWithFormat:@"1h"];
+    } else if (dateDiff < 86400) {
+        self.timestamp.text = [NSString stringWithFormat:@"%dhrs", (int)(dateDiff/3600)];
+    } else if (dateDiff < 172800) {
+        self.timestamp.text = [NSString stringWithFormat:@"1d"];
+    }
+    
+    
     [self.tweetContent sizeToFit];
     self.tweetContentHeightConstraint.constant = self.tweetContent.frame.size.height;
     NSLog(@"tweet user: %@, content height: %f", self.tweet[@"user"][@"name"], self.tweetContentHeightConstraint.constant);

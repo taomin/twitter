@@ -114,9 +114,20 @@
                             <action selector="onRetweet:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="bjf-KB-mUb"/>
                         </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Now" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ijc-Ij-eqD">
+                        <rect key="frame" x="256" y="16" width="50" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="98k-iO-FRS"/>
+                            <constraint firstAttribute="height" constant="20" id="RtZ-p4-ftn"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="k46-RD-AFr" firstAttribute="leading" secondItem="6L0-h2-CYa" secondAttribute="trailing" constant="42" id="1y4-vj-Kdj"/>
+                    <constraint firstItem="Ijc-Ij-eqD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="2Jv-PO-XLg"/>
                     <constraint firstItem="yHp-9N-7je" firstAttribute="top" secondItem="6B8-jY-5Ee" secondAttribute="bottom" constant="8" id="6tw-Ka-XSE"/>
                     <constraint firstItem="aXw-p2-wsJ" firstAttribute="leading" secondItem="k46-RD-AFr" secondAttribute="trailing" constant="3" id="Fb2-yn-jfx"/>
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="yHp-9N-7je" secondAttribute="trailing" constant="41" id="FqE-Oe-eLl"/>
@@ -126,6 +137,7 @@
                     <constraint firstAttribute="trailingMargin" secondItem="yHp-9N-7je" secondAttribute="trailing" constant="41" id="JC6-bQ-g54"/>
                     <constraint firstItem="aXw-p2-wsJ" firstAttribute="top" secondItem="6B8-jY-5Ee" secondAttribute="bottom" constant="4" id="Mhp-Ve-a3N"/>
                     <constraint firstItem="k46-RD-AFr" firstAttribute="top" secondItem="6B8-jY-5Ee" secondAttribute="bottom" id="NE2-hF-pgx"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Ijc-Ij-eqD" secondAttribute="trailing" constant="8" id="PGB-kU-ElY"/>
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Tyy-2m-oQe" secondAttribute="trailing" constant="30" id="PLY-44-3lE"/>
                     <constraint firstItem="xMU-Kb-Uj7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="QI7-fG-cVi"/>
                     <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="xMU-Kb-Uj7" secondAttribute="bottom" constant="8" id="Srk-2K-uUb"/>
@@ -162,6 +174,7 @@
                 <outlet property="replyButton" destination="6L0-h2-CYa" id="EgK-pu-WEe"/>
                 <outlet property="retweetButton" destination="k46-RD-AFr" id="5yQ-Xu-VPj"/>
                 <outlet property="retweetCountLabel" destination="aXw-p2-wsJ" id="p05-qj-FUW"/>
+                <outlet property="timestamp" destination="Ijc-Ij-eqD" id="JDw-TE-VWD"/>
                 <outlet property="tweetContent" destination="6B8-jY-5Ee" id="mf4-Yj-GGI"/>
                 <outlet property="tweetContentHeightConstraint" destination="4kf-nj-3wz" id="lTX-wS-eno"/>
                 <outlet property="userName" destination="Tyy-2m-oQe" id="yRP-kT-PxS"/>
