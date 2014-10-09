@@ -20,7 +20,7 @@ Time spent on this exercise is about 20 hours.
 * [x] Optional: User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
 
 ## Demo
-![demo](http://i.imgur.com/Zk1vOEI.gif) 
+![demo](http://i.imgur.com/vd8fbKE.gif) 
 
 ## Pods imported
 * AFNetworking
