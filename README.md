@@ -1,4 +1,4 @@
-iOSTwitter
+Twitter
 ==========
 
 Time spent on this exercise is about 20 hours.
