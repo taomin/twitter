@@ -59,7 +59,7 @@ NSInteger const SCROLL_BUFFER = 5;
 
     self.twitterClient = [TwitterClient getTwitterClient];
     [self.twitterClient GET:@"1.1/statuses/home_timeline.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"fetched twitter timeline %@", responseObject);
+//        NSLog(@"fetched twitter timeline %@", responseObject);
         self.feed = responseObject;
         [self.timelineTable reloadData];
         [self.refreshCtrl endRefreshing];
@@ -88,7 +88,7 @@ NSInteger const SCROLL_BUFFER = 5;
     TimelineTweetCell *cell = [self.timelineTable dequeueReusableCellWithIdentifier:@"TimelineTweetCell"];
     NSDictionary *tweet = self.feed[indexPath.row];
     [cell setTweetData:tweet];
-    
+    cell.delegate = self;
     return cell;
     
 }
@@ -97,6 +97,7 @@ NSInteger const SCROLL_BUFFER = 5;
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     TweetViewController *tvc = [TweetViewController new];
+    tvc.delegate = self;
     [tvc setTweet:self.feed[indexPath.row]];
     [self.navigationController pushViewController:tvc animated:YES];
     [self.timelineTable reloadData];
@@ -153,7 +154,7 @@ NSInteger const SCROLL_BUFFER = 5;
 }
 
 - (void)addNewTweet:(NSDictionary *)tweet {
-//    NSLog(@"got a new tweet! %@", tweet);
+
     NSMutableArray *newFeed = [self.feed mutableCopy];
     [newFeed insertObject:tweet atIndex:0];
     self.feed = newFeed;
@@ -161,12 +162,26 @@ NSInteger const SCROLL_BUFFER = 5;
 }
 
 - (void)onCompose {
-    
+    [self invokeComposeView:nil];
+}
+
+- (void)replyTweet:(NSDictionary *)tweet {
+    [self invokeComposeView:tweet];
+}
+
+- (void)invokeComposeView:(NSDictionary *)tweet {
     ComposeViewController *cvc = [ComposeViewController new];
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:cvc];
     
-    NSLog(@"do i have user info ? %@", self.userInfo);
+    //    NSLog(@"do i have user info ? %@", self.userInfo);
     [cvc setTweetUserInfo:self.userInfo];
+    
+    if (tweet != nil) {
+        NSLog(@"reply tweet: %@", tweet[@"user"][@"screen_name"]);
+//        [cvc setReplyTweet:tweet[@"user"][@"screen_name"] replyTo:[tweet[@"id"] intvalue]];
+        [cvc setReplyTweet:tweet[@"user"][@"screen_name"] replyTo:[tweet[@"id"] integerValue]];
+        
+    }
     cvc.delegate = self;
     [self.navigationController presentViewController:nvc animated:YES completion:nil];
 

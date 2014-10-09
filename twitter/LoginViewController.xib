@@ -22,7 +22,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="onLoginButtonClicked:" destination="-1" eventType="touchUpInside" id="d50-E3-l2U"/>
+                        <action selector="onLoginButtonClicked:" destination="-1" eventType="touchUpInside" id="vK8-eo-HJb"/>
                     </connections>
                 </button>
             </subviews>

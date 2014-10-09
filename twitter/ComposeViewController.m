@@ -16,9 +16,23 @@
 @property (strong, nonatomic) IBOutlet UILabel *userName;
 @property (strong, nonatomic) IBOutlet UILabel *userId;
 @property (strong, nonatomic) NSDictionary *userInfo;
+@property (strong, nonatomic) NSString *replyUserId;
+@property (nonatomic) NSInteger replyTweetId;
 @end
 
 @implementation ComposeViewController
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        self.replyTweetId = -1;
+    }
+    
+    return self;
+    
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,6 +43,10 @@
 
     self.userName.text = self.userInfo[@"name"];
     self.userId.text = self.userInfo[@"screen_name"];
+    
+    if (self.replyUserId != nil) {
+        self.composeText.text = [NSString stringWithFormat:@"@%@ ", self.replyUserId];
+    }
     
     NSLog(@"image url %@", self.userInfo[@"profile_image_url"]);
     [self.composeText becomeFirstResponder];
@@ -43,11 +61,26 @@
     self.userInfo = userInfo;
 }
 
+- (void)setReplyTweet:(NSString *)userId replyTo:(NSInteger )tweetId {
+    if (userId != nil) {
+        self.replyTweetId = tweetId;
+        self.replyUserId = userId;
+    }
+}
+
 - (void)postTweet {
 //    NSLog(@"ready to post tweet: %@", self.composeText.text);
     
     TwitterClient *twitterClient = [TwitterClient getTwitterClient];
-    [twitterClient POST:@"1.1/statuses/update.json" parameters:@{@"status": self.composeText.text} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    
+    NSMutableDictionary *params = [@{@"status": self.composeText.text} mutableCopy];
+    if (self.replyTweetId != -1) {
+        [params setObject:@(self.replyTweetId) forKey:@"in_reply_to_status_id"];
+    }
+    
+    NSLog(@"post tweet with config: %@", params);
+    
+    [twitterClient POST:@"1.1/statuses/update.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         // success
         
 //        NSLog(@"successfully post a tweet, response %@", responseObject);

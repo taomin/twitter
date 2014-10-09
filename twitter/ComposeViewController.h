@@ -16,4 +16,5 @@
 @interface ComposeViewController : UIViewController
 @property (nonatomic, weak) id <ComposeViewControllerDelegate> delegate;
 - (void)setTweetUserInfo:(NSDictionary *)userInfo;
+- (void)setReplyTweet:(NSString *)userId replyTo:(NSInteger)tweetId;
 @end

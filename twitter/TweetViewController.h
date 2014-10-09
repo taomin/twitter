@@ -7,9 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+@class TweetViewController;
+
+@protocol TweetDelegate <NSObject>
+- (void)replyTweet:(NSDictionary *)tweet;
+@end
+
 
 @interface TweetViewController : UIViewController
 
+@property (nonatomic, weak) id <TweetDelegate> delegate;
 -(void)setTweet:(NSDictionary *)tweet;
 
 @end
