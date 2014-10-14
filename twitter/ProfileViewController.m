@@ -7,10 +7,14 @@
 //
 
 #import "ProfileViewController.h"
+#import "TimelineTweetCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "TwitterClient.h"
+
 
 @interface ProfileViewController ()
 @property (strong, nonatomic) NSDictionary* userInfo;
+@property (strong, nonatomic) NSArray* tweets;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UIImageView *headerImage;
 @property (strong, nonatomic) IBOutlet UIImageView *profileImage;
@@ -20,6 +24,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *tweetCnt;
 @property (strong, nonatomic) IBOutlet UILabel *followingCnt;
 @property (strong, nonatomic) IBOutlet UILabel *followerCnt;
+@property (strong, nonatomic) IBOutlet UITableView *userTweetsTable;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *userTweetTableHeight;
 
 @end
 
@@ -29,7 +35,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 //    [self.headerImage setImageWithURL:[NSURL URLWithString:@"https://pbs.twimg.com/profile_banners/7250232/1398660752/1500x500"]];
-    
     [self updateProfileView];
 }
 - (void)didReceiveMemoryWarning {
@@ -59,6 +64,7 @@
 }
 
 - (void)updateProfileView {
+    self.title = @"Profile";
     [self.headerImage setImageWithURL:[NSURL URLWithString:self.userInfo[@"profile_banner_url"]]];
     [self.profileImage setImageWithURL:[NSURL URLWithString:self.userInfo[@"profile_image_url_https"]]];
     self.userName.text = self.userInfo[@"name"];
@@ -67,16 +73,46 @@
     self.followerCnt.text = [NSString stringWithFormat:@"%@", self.userInfo[@"followers_count"]];
     self.followingCnt.text = [NSString stringWithFormat:@"%@", self.userInfo[@"friends_count"]];
     self.tweetCnt.text = [NSString stringWithFormat:@"%@", self.userInfo[@"statuses_count"]];
+    
+    //setup user tweets history
+    self.userTweetsTable.delegate = self;
+    self.userTweetsTable.dataSource = self;
+    self.userTweetsTable.rowHeight = UITableViewAutomaticDimension;
+    [self.userTweetsTable registerNib:[UINib nibWithNibName:@"TimelineTweetCell" bundle:nil] forCellReuseIdentifier:@"TimelineTweetCell"];
+    [self loadUserTweets];
 }
 
-/*
-#pragma mark - Navigation
+- (void)loadUserTweets {
+    
+    TwitterClient *twitterClient = [TwitterClient getTwitterClient];
+    [twitterClient GET:@"1.1/statuses/user_timeline.json" parameters:@{@"count": @"20"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        self.tweets = responseObject;
+                [self.userTweetsTable reloadData];
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"failed to get mentions");
+    }
+     ];
 }
-*/
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    self.userTweetTableHeight.constant = self.userTweetsTable.contentSize.height;
+    [self viewDidLayoutSubviews];
+
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSLog(@"how mnay twetes ? %lu", (unsigned long)[self.tweets count]);
+    return [self.tweets count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    TimelineTweetCell *cell = [self.userTweetsTable dequeueReusableCellWithIdentifier:@"TimelineTweetCell"];
+    NSDictionary *tweet = self.tweets[indexPath.row];
+    [cell setTweetData:tweet];
+    return cell;
+}
+
 
 @end

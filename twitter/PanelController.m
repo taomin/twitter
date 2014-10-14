@@ -49,7 +49,7 @@
     self.menuOpen = NO;
     
     // set main view to timeline view
-    [self loadTimelineView];
+    [self loadTimelineView:NO];
     
     // add menu controller
     self.menuVC.view.frame = self.menuView.bounds;
@@ -93,7 +93,7 @@
         if (!self.menuOpen && delta > 0) {
             [self openMenu];
         } else if (self.menuOpen && delta < 0) {
-            [self closeMenu];
+            [self closeMenu:YES];
         }
     }
     
@@ -110,17 +110,23 @@
 
 }
 
-- (void)closeMenu {
-    [UIView animateWithDuration:0.35 animations:^{
-        self.mainViewoffsetX.constant = 0;
-        [self.view layoutIfNeeded];
-    }];
-    
+- (void)closeMenu:(BOOL)isAnimated {
+
+    if (isAnimated) {
+        [UIView animateWithDuration:0.35 animations:^{
+            self.mainViewoffsetX.constant = 0;
+            [self.view layoutIfNeeded];
+        }];
+    }
     self.menuOpen = NO;
 }
 
 
 - (void)loadViewInMainTable:(UIViewController *)vc {
+    [self loadViewInMainTable:vc animated:YES];
+}
+
+- (void)loadViewInMainTable:(UIViewController *)vc animated:(BOOL)isAnimated {
     if (self.currentVC != nil) {
         [self.currentVC willMoveToParentViewController:nil];
         [self.currentVC didMoveToParentViewController:nil];
@@ -132,7 +138,7 @@
     [vc didMoveToParentViewController:self];
     
     self.currentVC = vc;
-    [self closeMenu];
+    [self closeMenu:isAnimated];
 }
 
 - (void)loadProfileView: (NSDictionary *)userInfo {
@@ -144,11 +150,16 @@
 }
 
 - (void)loadTimelineView {
+    [self loadTimelineView:YES];
+}
+
+- (void)loadTimelineView:(BOOL)isAnimated{
     if (self.timelineNVC == nil) {
         self.timelineNVC = [[UINavigationController alloc] initWithRootViewController:self.timelineVC];
     }
-    [self loadViewInMainTable: self.timelineNVC];
+    [self loadViewInMainTable:self.timelineNVC animated:isAnimated];
 }
+
 
 - (void)loadMentionsView {
     if (self.mentionsNVC == nil) {
