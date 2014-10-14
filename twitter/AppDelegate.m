@@ -10,6 +10,7 @@
 #import "TwitterClient.h"
 #import "TimelineViewController.h"
 #import "LoginViewController.h"
+#import "PanelController.h"
 @interface AppDelegate ()
 
 @end
@@ -35,7 +36,7 @@
         NSLog(@"try verifying access token");
         self.window.rootViewController = vc;
     }
-    
+  
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -43,19 +44,19 @@
 - (void)decideRootViewByVerifingAccessToken:(BDBOAuthToken *)accessToken rootViewWindow:(UIWindow *)window {
     
     TwitterClient *twitterClient = [TwitterClient getTwitterClient];
-    TimelineViewController *tvc = [TimelineViewController new];
-    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:tvc];
+
     LoginViewController *lvc = [LoginViewController new];
 
     // a placeholder viewcontroller; let's set timeline view first
-    window.rootViewController = nvc;
+    PanelController *pvc = [PanelController new];
+    window.rootViewController = pvc;
     
     [twitterClient GET:@"1.1/account/verify_credentials.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *resp = responseObject;
         if (resp[@"id"] != nil) {
             NSLog(@"credential verified %@", responseObject);
-            tvc.userInfo = resp;
-            
+//            pvc.timelineVC.userInfo = resp;
+            [pvc setUserInfo:resp];
         } else {
             NSLog(@"credential does not include id %@", responseObject);
             window.rootViewController = lvc;

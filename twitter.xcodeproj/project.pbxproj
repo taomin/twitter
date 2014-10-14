@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		03F200114C1242119A7010AE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC8B9C2EAF284A9FA7358A39 /* libPods.a */; };
+		B700CDE619EB136A000D935F /* PanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = B700CDE419EB136A000D935F /* PanelController.m */; };
+		B700CDE719EB136A000D935F /* PanelController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B700CDE519EB136A000D935F /* PanelController.xib */; };
+		B700CDEB19EB38BC000D935F /* MenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = B700CDE919EB38BC000D935F /* MenuController.m */; };
+		B700CDEC19EB38BC000D935F /* MenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B700CDEA19EB38BC000D935F /* MenuController.xib */; };
+		B700CDF019EB4B65000D935F /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B700CDEE19EB4B65000D935F /* ProfileViewController.m */; };
+		B700CDF119EB4B65000D935F /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B700CDEF19EB4B65000D935F /* ProfileViewController.xib */; };
+		B700CDF519EB4EF1000D935F /* MentionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B700CDF319EB4EF1000D935F /* MentionsViewController.m */; };
+		B700CDF619EB4EF1000D935F /* MentionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B700CDF419EB4EF1000D935F /* MentionsViewController.xib */; };
 		B7183E6A19DA800500DC63FB /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7183E6819DA800500DC63FB /* ComposeViewController.m */; };
 		B7183E6B19DA800500DC63FB /* ComposeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7183E6919DA800500DC63FB /* ComposeViewController.xib */; };
 		B73B0A3519D761B4006CD2D2 /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B73B0A3319D761B4006CD2D2 /* TimelineViewController.m */; };
@@ -37,6 +45,18 @@
 
 /* Begin PBXFileReference section */
 		83C3CADA72824BE78AFA2568 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		B700CDE319EB136A000D935F /* PanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanelController.h; sourceTree = "<group>"; };
+		B700CDE419EB136A000D935F /* PanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanelController.m; sourceTree = "<group>"; };
+		B700CDE519EB136A000D935F /* PanelController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PanelController.xib; sourceTree = "<group>"; };
+		B700CDE819EB38BC000D935F /* MenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuController.h; sourceTree = "<group>"; };
+		B700CDE919EB38BC000D935F /* MenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuController.m; sourceTree = "<group>"; };
+		B700CDEA19EB38BC000D935F /* MenuController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuController.xib; sourceTree = "<group>"; };
+		B700CDED19EB4B65000D935F /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		B700CDEE19EB4B65000D935F /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		B700CDEF19EB4B65000D935F /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		B700CDF219EB4EF1000D935F /* MentionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MentionsViewController.h; sourceTree = "<group>"; };
+		B700CDF319EB4EF1000D935F /* MentionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MentionsViewController.m; sourceTree = "<group>"; };
+		B700CDF419EB4EF1000D935F /* MentionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MentionsViewController.xib; sourceTree = "<group>"; };
 		B7183E6719DA800500DC63FB /* ComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
 		B7183E6819DA800500DC63FB /* ComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 		B7183E6919DA800500DC63FB /* ComposeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposeViewController.xib; sourceTree = "<group>"; };
@@ -145,6 +165,18 @@
 				B7183E6719DA800500DC63FB /* ComposeViewController.h */,
 				B7183E6819DA800500DC63FB /* ComposeViewController.m */,
 				B7183E6919DA800500DC63FB /* ComposeViewController.xib */,
+				B700CDE319EB136A000D935F /* PanelController.h */,
+				B700CDE419EB136A000D935F /* PanelController.m */,
+				B700CDE519EB136A000D935F /* PanelController.xib */,
+				B700CDE819EB38BC000D935F /* MenuController.h */,
+				B700CDE919EB38BC000D935F /* MenuController.m */,
+				B700CDEA19EB38BC000D935F /* MenuController.xib */,
+				B700CDED19EB4B65000D935F /* ProfileViewController.h */,
+				B700CDEE19EB4B65000D935F /* ProfileViewController.m */,
+				B700CDEF19EB4B65000D935F /* ProfileViewController.xib */,
+				B700CDF219EB4EF1000D935F /* MentionsViewController.h */,
+				B700CDF319EB4EF1000D935F /* MentionsViewController.m */,
+				B700CDF419EB4EF1000D935F /* MentionsViewController.xib */,
 			);
 			path = twitter;
 			sourceTree = "<group>";
@@ -257,11 +289,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B700CDF119EB4B65000D935F /* ProfileViewController.xib in Resources */,
+				B700CDF619EB4EF1000D935F /* MentionsViewController.xib in Resources */,
 				B73B0A4619D76EA7006CD2D2 /* LoginViewController.xib in Resources */,
 				B7183E6B19DA800500DC63FB /* ComposeViewController.xib in Resources */,
 				B73B0A3619D761B4006CD2D2 /* TimelineViewController.xib in Resources */,
 				B73B0A3E19D7634D006CD2D2 /* TimelineTweetCell.xib in Resources */,
+				B700CDEC19EB38BC000D935F /* MenuController.xib in Resources */,
 				B7E8908F19D92CFB0030C2FB /* TweetViewController.xib in Resources */,
+				B700CDE719EB136A000D935F /* PanelController.xib in Resources */,
 				B77DBF1F19D75A8D00963E44 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -315,12 +351,16 @@
 			files = (
 				B7E8908E19D92CFB0030C2FB /* TweetViewController.m in Sources */,
 				B73B0A3D19D7634D006CD2D2 /* TimelineTweetCell.m in Sources */,
+				B700CDEB19EB38BC000D935F /* MenuController.m in Sources */,
+				B700CDF519EB4EF1000D935F /* MentionsViewController.m in Sources */,
 				B77DBF1719D75A8D00963E44 /* AppDelegate.m in Sources */,
 				B73B0A4519D76EA7006CD2D2 /* LoginViewController.m in Sources */,
 				B73B0A4119D768D8006CD2D2 /* TwitterClient.m in Sources */,
 				B77DBF1419D75A8D00963E44 /* main.m in Sources */,
 				B73B0A3519D761B4006CD2D2 /* TimelineViewController.m in Sources */,
+				B700CDF019EB4B65000D935F /* ProfileViewController.m in Sources */,
 				B7183E6A19DA800500DC63FB /* ComposeViewController.m in Sources */,
+				B700CDE619EB136A000D935F /* PanelController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

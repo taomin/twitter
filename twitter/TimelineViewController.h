@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "ComposeViewController.h"
 #import "TimelineTweetCell.h"
+#import "TweetViewController.h"
 
-@interface TimelineViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,ComposeViewControllerDelegate,TimelineTweetDelegate>
+@interface TimelineViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,ComposeViewControllerDelegate,TimelineTweetDelegate,TweetDelegate>
 @property (strong, nonatomic) NSDictionary *userInfo;
 @end

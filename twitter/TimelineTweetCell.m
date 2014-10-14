@@ -38,11 +38,7 @@
     [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"EN"]];
     [dateFormatter setDateFormat:@"EEE MMM dd HH:mm:ss ZZZZ yyyy"];
     
-//    NSLog(@"created at is %@", tweet[@"created_at"]);
-//    NSLog(@"date is %@", [dateFormatter dateFromString: tweet[@"created_at"]]);
     NSTimeInterval dateDiff = -1 * [[dateFormatter dateFromString: tweet[@"created_at"]] timeIntervalSinceNow];
-//    NSLog(@"relative time ? %@", (now - date));
-    NSLog(@"time diff is %f", dateDiff);
     
     if (dateDiff < 60) {
         self.timestamp.text = [NSString stringWithFormat:@"%ds", (int) dateDiff];
@@ -61,9 +57,13 @@
     
     [self.tweetContent sizeToFit];
     self.tweetContentHeightConstraint.constant = self.tweetContent.frame.size.height;
-    NSLog(@"tweet user: %@, content height: %f", self.tweet[@"user"][@"name"], self.tweetContentHeightConstraint.constant);
+    
+//    self.tweetContent.translatesAutoresizingMaskIntoConstraints = NO;
+//    NSLog(@"tweet user: %@, content height: %f", self.tweet[@"user"][@"name"], self.tweetContentHeightConstraint.constant);
 
 }
+
+
 - (IBAction)onReply:(id)sender {
     [self.delegate replyTweet:self.tweet];
 }

@@ -64,7 +64,7 @@
     [self.tweetContent sizeToFit];
     
     self.tweetViewHeightConstraint.constant = self.tweetContent.frame.size.height;
-    NSLog(@"tweet height: %f", self.tweetViewHeightConstraint.constant);
+//    NSLog(@"tweet height: %f", self.tweetViewHeightConstraint.constant);
     
     CGRect contentRect = CGRectZero;
     
@@ -92,7 +92,7 @@
     
     NSDictionary *params = @{@"id": self.tweetData[@"id"]};
     
-    NSLog(@"retweet with config: %@", params);
+//    NSLog(@"retweet with config: %@", params);
     
     [twitterClient POST:[NSString stringWithFormat:@"1.1/statuses/retweet/%@.json", self.tweetData[@"id"]] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         // success

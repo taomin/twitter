@@ -37,7 +37,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.profileImage setImageWithURL:[NSURL URLWithString:self.userInfo[@"profile_image_url_https"]]];
-    // Do any additional setup after loading the view from its nib.
 
     [self setUpNavigationBar];
 

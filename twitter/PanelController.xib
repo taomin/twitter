@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6206.9" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PanelController">
+            <connections>
+                <outlet property="mainView" destination="hU6-nj-jPd" id="Veu-k3-HpT"/>
+                <outlet property="mainViewoffsetX" destination="Tf7-IM-K00" id="LiO-8p-2bS"/>
+                <outlet property="menuView" destination="3q7-lI-7EN" id="Gnf-A3-hme"/>
+                <outlet property="menuWidthConstraint" destination="VXK-ht-nbn" id="EBr-Wx-yfs"/>
+                <outlet property="tableView" destination="Xj8-Sg-Z2K" id="vCL-1G-b9z"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GPP-EV-eLh" userLabel="rootView">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3q7-lI-7EN" userLabel="menuView">
+                            <rect key="frame" x="0.0" y="0.0" width="180" height="600"/>
+                            <color key="backgroundColor" red="0.25953682500000003" green="0.67018217690000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="180" id="VXK-ht-nbn"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hU6-nj-jPd" userLabel="mainView">
+                            <rect key="frame" x="180" y="0.0" width="600" height="600"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xj8-Sg-Z2K" userLabel="tableView">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <gestureRecognizers/>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="LLg-7M-WXy" appends="YES" id="nXR-IR-DdP"/>
+                                    </connections>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" red="0.81568634510000004" green="0.2470588386" blue="0.2470588386" alpha="1" colorSpace="deviceRGB"/>
+                            <constraints>
+                                <constraint firstItem="Xj8-Sg-Z2K" firstAttribute="leading" secondItem="hU6-nj-jPd" secondAttribute="leading" id="3ZG-Fv-Q7G"/>
+                                <constraint firstAttribute="bottom" secondItem="Xj8-Sg-Z2K" secondAttribute="bottom" id="Bg4-YM-TQf"/>
+                                <constraint firstAttribute="trailing" secondItem="Xj8-Sg-Z2K" secondAttribute="trailing" id="HrX-y8-hiB"/>
+                                <constraint firstItem="Xj8-Sg-Z2K" firstAttribute="top" secondItem="hU6-nj-jPd" secondAttribute="top" id="hZH-L0-PFH"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="hU6-nj-jPd" secondAttribute="bottom" id="4ik-TY-5rA"/>
+                        <constraint firstItem="3q7-lI-7EN" firstAttribute="height" secondItem="GPP-EV-eLh" secondAttribute="height" id="7hb-X2-rMl"/>
+                        <constraint firstItem="3q7-lI-7EN" firstAttribute="top" secondItem="GPP-EV-eLh" secondAttribute="top" id="8Mv-Bu-MKy"/>
+                        <constraint firstItem="hU6-nj-jPd" firstAttribute="height" secondItem="GPP-EV-eLh" secondAttribute="height" id="9o5-ER-p4a"/>
+                        <constraint firstItem="3q7-lI-7EN" firstAttribute="leading" secondItem="GPP-EV-eLh" secondAttribute="leading" id="CRA-qx-ull"/>
+                        <constraint firstItem="hU6-nj-jPd" firstAttribute="leading" secondItem="GPP-EV-eLh" secondAttribute="leading" constant="180" id="Tf7-IM-K00"/>
+                        <constraint firstAttribute="bottom" secondItem="3q7-lI-7EN" secondAttribute="bottom" id="VEq-ro-F8h"/>
+                        <constraint firstItem="hU6-nj-jPd" firstAttribute="top" secondItem="GPP-EV-eLh" secondAttribute="top" id="VmN-YW-9NF"/>
+                        <constraint firstItem="hU6-nj-jPd" firstAttribute="width" secondItem="GPP-EV-eLh" secondAttribute="width" id="xkh-qx-3Ln"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="GPP-EV-eLh" secondAttribute="bottom" id="XyY-RD-jcV"/>
+                <constraint firstItem="GPP-EV-eLh" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="bwb-4k-y4K"/>
+                <constraint firstItem="GPP-EV-eLh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="doz-hB-Twy"/>
+                <constraint firstAttribute="trailing" secondItem="GPP-EV-eLh" secondAttribute="trailing" id="qt2-AC-g4N"/>
+            </constraints>
+            <point key="canvasLocation" x="337" y="282"/>
+        </view>
+        <panGestureRecognizer minimumNumberOfTouches="1" id="LLg-7M-WXy">
+            <connections>
+                <action selector="onPan:" destination="-1" id="HiP-tn-Nus"/>
+            </connections>
+        </panGestureRecognizer>
+    </objects>
+</document>

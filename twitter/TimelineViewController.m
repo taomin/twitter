@@ -59,7 +59,6 @@ NSInteger const SCROLL_BUFFER = 5;
 
     self.twitterClient = [TwitterClient getTwitterClient];
     [self.twitterClient GET:@"1.1/statuses/home_timeline.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"fetched twitter timeline %@", responseObject);
         self.feed = responseObject;
         [self.timelineTable reloadData];
         [self.refreshCtrl endRefreshing];
@@ -138,7 +137,6 @@ NSInteger const SCROLL_BUFFER = 5;
         [NSTimer scheduledTimerWithTimeInterval:1.0
                                          target:[NSBlockOperation blockOperationWithBlock:^{
             self.isFetching = NO;
-//            NSLog(@"is fetching : no");
                                         }]
                                        selector:@selector(main)
                                        userInfo:nil
@@ -178,7 +176,6 @@ NSInteger const SCROLL_BUFFER = 5;
     
     if (tweet != nil) {
         NSLog(@"reply tweet: %@", tweet[@"user"][@"screen_name"]);
-//        [cvc setReplyTweet:tweet[@"user"][@"screen_name"] replyTo:[tweet[@"id"] intvalue]];
         [cvc setReplyTweet:tweet[@"user"][@"screen_name"] replyTo:[tweet[@"id"] integerValue]];
         
     }
