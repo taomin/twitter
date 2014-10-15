@@ -12,6 +12,7 @@
 #import "TweetViewController.h"
 #import "ComposeViewController.h"
 #import "LoginViewController.h"
+#import "ProfileViewController.h"
 
 NSInteger const SCROLL_BUFFER = 5;
 
@@ -181,8 +182,15 @@ NSInteger const SCROLL_BUFFER = 5;
     }
     cvc.delegate = self;
     [self.navigationController presentViewController:nvc animated:YES completion:nil];
-
 }
+
+- (void)loadUserProfile: (NSInteger)userId userScreenName: (NSString *)screenName {
+    NSLog(@"user id: %ld, userscreenanme: %@", (long)userId, screenName);
+    ProfileViewController *pvc = [ProfileViewController new];
+    [pvc setProfileUserId:userId screenName:screenName];
+    [self.navigationController pushViewController:pvc animated:YES];
+}
+
 
 - (void)onSignOut {
 

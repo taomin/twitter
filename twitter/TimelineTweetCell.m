@@ -58,11 +58,18 @@
     [self.tweetContent sizeToFit];
     self.tweetContentHeightConstraint.constant = self.tweetContent.frame.size.height;
     
-//    self.tweetContent.translatesAutoresizingMaskIntoConstraints = NO;
-//    NSLog(@"tweet user: %@, content height: %f", self.tweet[@"user"][@"name"], self.tweetContentHeightConstraint.constant);
-
+    // for some reason adding Tap gesture through Nib doesn't work. Have to add it manually
+    UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapProfileImage)];
+    tapped.numberOfTapsRequired = 1;
+    [self.profileImage addGestureRecognizer:tapped];
+    
 }
 
+- (void)onTapProfileImage {
+    
+    
+    [self.delegate loadUserProfile:[self.tweet[@"user"][@"id"] integerValue] userScreenName:self.tweet[@"user"][@"screen_name"]];
+}
 
 - (IBAction)onReply:(id)sender {
     [self.delegate replyTweet:self.tweet];

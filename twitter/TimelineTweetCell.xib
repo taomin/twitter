@@ -14,13 +14,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xMU-Kb-Uj7">
-                        <rect key="frame" x="16" y="16" width="48" height="48"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="48" id="AkH-h6-X3A"/>
-                            <constraint firstAttribute="width" constant="48" id="d3s-lx-OMd"/>
-                        </constraints>
-                    </imageView>
                     <button opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6L0-h2-CYa">
                         <rect key="frame" x="76" y="104" width="20" height="20"/>
                         <constraints>
@@ -121,6 +114,14 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xMU-Kb-Uj7">
+                        <rect key="frame" x="16" y="16" width="48" height="48"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="48" id="AkH-h6-X3A"/>
+                            <constraint firstAttribute="width" constant="48" id="d3s-lx-OMd"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="k46-RD-AFr" firstAttribute="leading" secondItem="6L0-h2-CYa" secondAttribute="trailing" constant="42" id="1y4-vj-Kdj"/>

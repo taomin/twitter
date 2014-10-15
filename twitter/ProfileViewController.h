@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ProfileViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
--(void) setProfileUserData : (NSDictionary *) userInfo;
+-(void)setProfileUserData: (NSDictionary *) userInfo;
+-(void)setProfileUserId: (NSInteger)userId screenName: (NSString *)userScreenName;
 @end

@@ -11,6 +11,7 @@
 
 @protocol TimelineTweetDelegate <NSObject>
 - (void)replyTweet:(NSDictionary *)tweet;
+- (void)loadUserProfile: (NSInteger)userId userScreenName: (NSString *)screenName;
 @end
 
 @interface TimelineTweetCell : UITableViewCell

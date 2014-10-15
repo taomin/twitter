@@ -35,6 +35,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 //    [self.headerImage setImageWithURL:[NSURL URLWithString:@"https://pbs.twimg.com/profile_banners/7250232/1398660752/1500x500"]];
+    [self setUpNavigationBar];
     [self updateProfileView];
 }
 - (void)didReceiveMemoryWarning {
@@ -63,8 +64,22 @@
     self.userInfo = userInfo;
 }
 
+// retrieve user profile info by ID
+- (void)setProfileUserId: (NSInteger)userId screenName: (NSString *)userScreenName {
+    TwitterClient *twitterClient = [TwitterClient getTwitterClient];
+    [twitterClient GET:@"1.1/users/show.json" parameters:@{@"user_id": @(userId), @"screen_name": userScreenName} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        self.userInfo = responseObject;
+        [self updateProfileView];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"failed to get user info");
+    }
+     ];
+}
+
+
 - (void)updateProfileView {
-    self.title = @"Profile";
+    
     [self.headerImage setImageWithURL:[NSURL URLWithString:self.userInfo[@"profile_banner_url"]]];
     [self.profileImage setImageWithURL:[NSURL URLWithString:self.userInfo[@"profile_image_url_https"]]];
     self.userName.text = self.userInfo[@"name"];
@@ -78,21 +93,33 @@
     self.userTweetsTable.delegate = self;
     self.userTweetsTable.dataSource = self;
     self.userTweetsTable.rowHeight = UITableViewAutomaticDimension;
-    [self.userTweetsTable registerNib:[UINib nibWithNibName:@"TimelineTweetCell" bundle:nil] forCellReuseIdentifier:@"TimelineTweetCell"];
+    [self.userTweetsTable registerNib:[UINib nibWithNibName:@"TimelineTweetCell" bundle:nil] forCellReuseIdentifier:@"ProfileTweetCell"];
     [self loadUserTweets];
 }
 
+- (void)setUpNavigationBar {
+    // navigation bar
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:(116/255.0) green:(195/255.0) blue:(224/255.0) alpha:0.8];
+    self.navigationItem.title = @"Profile";
+    [self.navigationController.navigationBar
+     setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    
+}
+
+
 - (void)loadUserTweets {
     
-    TwitterClient *twitterClient = [TwitterClient getTwitterClient];
-    [twitterClient GET:@"1.1/statuses/user_timeline.json" parameters:@{@"count": @"20"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        self.tweets = responseObject;
-                [self.userTweetsTable reloadData];
+    if (self.userInfo != nil) {
+        TwitterClient *twitterClient = [TwitterClient getTwitterClient];
+        [twitterClient GET:@"1.1/statuses/user_timeline.json" parameters:@{@"count": @"20", @"user_id": self.userInfo[@"id"]} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            self.tweets = responseObject;
+                    [self.userTweetsTable reloadData];
 
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"failed to get mentions");
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"failed to get mentions");
+        }
+         ];
     }
-     ];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -108,7 +135,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    TimelineTweetCell *cell = [self.userTweetsTable dequeueReusableCellWithIdentifier:@"TimelineTweetCell"];
+    TimelineTweetCell *cell = [self.userTweetsTable dequeueReusableCellWithIdentifier:@"ProfileTweetCell"];
     NSDictionary *tweet = self.tweets[indexPath.row];
     [cell setTweetData:tweet];
     return cell;
